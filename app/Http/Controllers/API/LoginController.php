@@ -20,7 +20,7 @@ class LoginController extends Controller
             return api_response(null,$validation->errors());
         $credentials = $request->only(['name','password']);
 
-        if (!\auth()->attempt($credentials))
+        if (!auth()->attempt($credentials))
             return api_response(null,$validation->errors()->add("user","These credentials do not match our records."));
         return api_response([
             "user" => [
