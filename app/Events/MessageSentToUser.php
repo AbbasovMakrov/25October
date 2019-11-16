@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Http\Resources\MessageResource;
 use App\Message;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -14,6 +15,9 @@ use Illuminate\Queue\SerializesModels;
 class MessageSentToUser implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+    /**
+     * @var MessageResource $message
+     */
     public $message;
     /**
      * Create a new event instance.
@@ -22,7 +26,7 @@ class MessageSentToUser implements ShouldBroadcast
      */
     public function __construct(Message $message)
     {
-        $this->message = $message;
+        $this->message = new MessageResource($message);
     }
 
     /**
@@ -33,5 +37,9 @@ class MessageSentToUser implements ShouldBroadcast
     public function broadcastOn()
     {
         return new PrivateChannel('messages-channel');
+    }
+    public function broadcastAs()
+    {
+        return 'newMessage';
     }
 }

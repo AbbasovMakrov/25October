@@ -70,4 +70,8 @@ class MessageSent extends Notification
     {
         return ['notifications-channel'];
     }
+    public function broadcastAs()
+    {
+        return 'newMessageNotification';
+    }
 }
