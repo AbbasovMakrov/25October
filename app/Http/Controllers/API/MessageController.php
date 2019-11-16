@@ -80,7 +80,8 @@ class MessageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   $request->request->add(['msgId' => $id]);
+    {
+        $request->request->add(['msgId' => $id]);
         $validation = validator($request->all(), [
             "msgId" => ['required','integer','min:1'],
             "message" => ['nullable', 'string'],

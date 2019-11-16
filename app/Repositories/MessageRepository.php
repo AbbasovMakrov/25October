@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 
+use App\Events\MessageSentToUser;
 use App\Interfaces\MessageRepositoryInterface;
 use App\Message;
 use Illuminate\Database\Eloquent\Builder;
@@ -37,12 +38,14 @@ class MessageRepository implements MessageRepositoryInterface
      */
     public function store(array $data)
     {
-        return $this->model->create([
+        $message =  $this->model->create([
            "to_user_id" => $data['receiverId'],
            "file" => $data['message_file'],
            "message" => $data['message'],
             "user_id" => auth()->id()
         ]);
+        broadcast(new MessageSentToUser($message));
+        return $message;
     }
 
     /**

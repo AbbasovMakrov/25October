@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Broadcast;
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -14,3 +14,11 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+ Broadcast::channel("messages-channel",function( $user)
+ {
+     return auth()->check();
+ });
+ Broadcast::channel("notifications-channel",function( $user)
+ {
+     return auth()->check();
+ });
