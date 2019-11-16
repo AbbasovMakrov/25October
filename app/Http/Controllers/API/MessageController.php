@@ -68,7 +68,7 @@ class MessageController extends Controller
         $message = $this->repository->store($data);
         if (!$message)
             return api_response(null,['message' => ['Sorry , There is an error the message will not update']]);
-        return api_response(["messages" => new MessageResource($message)]);
+        return api_response(["message" => new MessageResource($message)]);
     }
 
 
@@ -107,7 +107,7 @@ class MessageController extends Controller
         $message = $this->repository->update($data,$id);
         if (!$message)
             return api_response(null,['message' => ['Sorry , There is an error the message will not update']]);
-        return api_response(["messages" => new MessageResource($message)]);
+        return api_response(["message" => new MessageResource($message)]);
     }
 
     /**
@@ -122,7 +122,7 @@ class MessageController extends Controller
         $message = $this->repository->see($messageId);
         if (!$message)
             return api_response(null,['message' => ['not found']]);
-        return api_response(["messages" => new MessageResource($message)]);
+        return api_response(["message" => new MessageResource($message)]);
     }
 
     /**
