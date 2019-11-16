@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class MessageResource extends JsonResource
@@ -32,7 +33,7 @@ class MessageResource extends JsonResource
             "to" => $this->user_to->name,
             "message" => $this->message,
             "file" => $this->file ? asset("storage/{$this->file}") : null,
-            "sent" => $this->created_at,
+            "sent" => Carbon::make($this->created_at)->toDateTimeString(),
             "edited" => $this->updated_at != $this->created_at,
             "seen" => $this->seen_at ? true : false,
             "sectionType" => $this->messageType()
