@@ -31,10 +31,11 @@ if (!function_exists("file_type"))
     function file_type(string $fileName)
     {
         $imageExtensions = ["jpg","jpeg","png"];
+        $audioExtensions = ['ogg','m4a','mp3'];
         $fileExtension = pathinfo($fileName,PATHINFO_EXTENSION);
         if (in_array($fileExtension,$imageExtensions))
             return "image";
-        if ($fileExtension == "ogg")
+        else if (in_array($fileExtension,$audioExtensions))
             return "audio";
         return "video" ;
     }

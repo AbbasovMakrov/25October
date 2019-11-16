@@ -45,7 +45,7 @@ class MessageController extends Controller
         $validation = validator($request->all(), [
             "receiverId" => ['required', 'integer', 'min:1', new IsUserExists],
             "message" => ['nullable', 'string'],
-            "message_file" => ['nullable', 'mimes:jpg,png,jpeg,mp4,3gp,ogg']
+            "message_file" => ['nullable', 'mimetypes:image/*,video/*,audio/*']
         ]);
         if ($validation->fails())
             return api_response(null, $validation->errors());

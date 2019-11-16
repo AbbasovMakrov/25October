@@ -27,6 +27,6 @@ class MessageSentListener
      */
     public function handle(MessageSentToUser $event)
     {
-        $event->message->user_to()->notify(new MessageSent($event->message));
+        $event->message->user_to->notify(new MessageSent($event->message));
     }
 }
