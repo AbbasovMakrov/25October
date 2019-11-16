@@ -34,7 +34,7 @@ if (!function_exists("file_type"))
         $fileExtension = pathinfo($fileName,PATHINFO_EXTENSION);
         if (in_array($fileExtension,$imageExtensions))
             return "image";
-        if ($fileExtension == "m4a")
+        if ($fileExtension == "ogg")
             return "audio";
         return "video" ;
     }
