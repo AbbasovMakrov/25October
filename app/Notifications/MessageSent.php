@@ -14,10 +14,11 @@ class MessageSent extends Notification
 {
     use Queueable;
     private $message;
+
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param Message $message
      */
     public function __construct(Message $message)
     {
