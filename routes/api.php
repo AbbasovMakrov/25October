@@ -29,9 +29,14 @@ Route::get("credits",function()
        ]
    ]);
 });
-Route::middleware(['auth','role:admin'])->namespace("Dashboard")->prefix("dashboard")->group(function()
+Route::namespace("Dashboard")->prefix("dashboard")->group(function()
 {
-    Route::get("message/index",action_path_builder("Message","index"));
-    Route::patch("message/mark-as-important/{messageId}",action_path_builder("Message","markAsImportant"));
-    Route::delete("message/destroy/{messageId}",action_path_builder("Message","destroy"));
+    Route::post("login",'LoginController');
+    Route::prefix("message")->middleware(['auth','role:admin'])->group(function()
+    {
+        Route::get("index",action_path_builder("Message","index"));
+        Route::patch("mark-as-important/{messageId}",action_path_builder("Message","markAsImportant"));
+        Route::delete("destroy/{messageId}",action_path_builder("Message","destroy"));
+    });
+
 });

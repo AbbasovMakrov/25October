@@ -15,6 +15,6 @@ class GetUsers extends Controller
      */
     public function __invoke()
     {
-        return api_response(['users' => User::where("id","!=",auth()->id())]);
+        return api_response(['users' => User::where("id","!=",auth()->id())->get()]);
     }
 }

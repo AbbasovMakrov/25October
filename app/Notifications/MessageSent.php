@@ -3,12 +3,14 @@
 namespace App\Notifications;
 
 use App\Message;
+use Illuminate\Broadcasting\Broadcasters\PusherBroadcaster;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Broadcast;
 
 class MessageSent extends Notification
 {
@@ -38,7 +40,7 @@ class MessageSent extends Notification
 
     public function toBroadcast($notifiable)
     {
-        return new BroadcastMessage($this->toArray($notifiable));
+        return (new BroadcastMessage($this->toArray($notifiable)));
     }
 
     /**
@@ -71,8 +73,5 @@ class MessageSent extends Notification
     {
         return ['notifications-channel'];
     }
-    public function broadcastAs()
-    {
-        return 'newMessageNotification';
-    }
+
 }
