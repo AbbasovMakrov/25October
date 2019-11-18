@@ -19,7 +19,6 @@ class MessageSentToUser implements ShouldBroadcast
      * @var MessageResource $message
      */
     public $message;
-    public $messageForClient;
     /**
      * Create a new event instance.
      *
@@ -27,8 +26,7 @@ class MessageSentToUser implements ShouldBroadcast
      */
     public function __construct(Message $message)
     {
-        $this->message = $message;
-        $this->messageForClient = new MessageResource($message);
+        $this->message = new MessageResource($message);
     }
 
     /**

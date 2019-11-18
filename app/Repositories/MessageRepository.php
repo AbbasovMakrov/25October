@@ -7,7 +7,9 @@ namespace App\Repositories;
 use App\Events\MessageSentToUser;
 use App\Interfaces\MessageRepositoryInterface;
 use App\Message;
+use App\Notifications\MessageSent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 class MessageRepository implements MessageRepositoryInterface
@@ -45,6 +47,7 @@ class MessageRepository implements MessageRepositoryInterface
             "user_id" => auth()->id()
         ]);
         broadcast(new MessageSentToUser($message));
+        $message->user_to->notify(new MessageSent($message));
         return $message;
     }
 
