@@ -28,7 +28,13 @@ interface MessageRepositoryInterface
      */
     public function findById($id);
     public function update(array $data, int $messageId);
-    public function see(int $messageId);
+    public function see(int $receiverId);
     public function destroy(int $messageId);
     public function destroyAllMessages();
+
+    public function getNotImportantMessages();
+
+    public function getImportantMessages();
+
+    public function markAsImportantMessage($messageId);
 }

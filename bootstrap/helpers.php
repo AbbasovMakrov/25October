@@ -28,6 +28,10 @@ if (!function_exists("action_path_builder"))
 }
 if (!function_exists("file_type"))
 {
+    /**
+     * @param string $fileName
+     * @return string
+     */
     function file_type(string $fileName)
     {
         $imageExtensions = ["jpg","jpeg","png"];

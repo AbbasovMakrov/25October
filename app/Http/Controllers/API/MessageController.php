@@ -111,18 +111,18 @@ class MessageController extends Controller
     }
 
     /**
-     * @param $messageId
+     * @param $receiverId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function see($messageId)
+    public function see($receiverId)
     {
-        $validation = $this->idValidation($messageId);
+        $validation = $this->idValidation($receiverId);
         if ($validation->fails())
             return api_response(null,$validation->errors());
-        $message = $this->repository->see($messageId);
-        if (!$message)
+        $messages = $this->repository->see($receiverId);
+        if (!$messages)
             return api_response(null,['message' => ['not found']]);
-        return api_response(["message" => new MessageResource($message)]);
+        return api_response(["messages_seen" => "Messages seen successfully"]);
     }
 
     /**

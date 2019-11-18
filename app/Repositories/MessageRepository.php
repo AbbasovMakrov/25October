@@ -79,14 +79,17 @@ class MessageRepository implements MessageRepositoryInterface
     }
 
     /**
-     * @param int $messageId
+     * @param int $receiverId
      * @return Message|Message[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
-    public function see(int $messageId)
+    public function see(int $receiverId)
     {
-        $message = $this->findById($messageId);
-        $message->markAsSeen();
-        return $message;
+        $messages = $this->model->whereToUserId($receiverId)->whereSeenAt(null)->get();
+        if (!$messages) return null;
+        $messages->each(function (Message $message){
+            $message->markAsSeen();
+        });
+        return $messages;
     }
 
     /**
@@ -97,7 +100,7 @@ class MessageRepository implements MessageRepositoryInterface
     public function destroy(int $messageId)
     {
         $message = $this->findById($messageId);
-        if ($message->user_id != auth()->id())
+        if ($message->user_id != auth()->id() || auth()->user()->role != "admin")
             return null;
         if ($message->file)
             Storage::delete("public/{$message->file}");
@@ -117,6 +120,23 @@ class MessageRepository implements MessageRepositoryInterface
             $message->delete();
         });
         return true;
+    }
+    public function getNotImportantMessages()
+    {
+        return $this->model->whereIsImportant(false)->get();
+    }
+
+    public function getImportantMessages()
+    {
+        return $this->model->whereIsImportant(true)->get();
+    }
+    public function markAsImportantMessage($messageId)
+    {
+        $message = $this->findById($messageId);
+        if (!$message)
+            return null;
+        $message->markAsImportant();
+        return $message;
     }
 }
 

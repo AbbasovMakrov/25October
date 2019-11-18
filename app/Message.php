@@ -53,6 +53,14 @@ class Message extends Model
            "seen_at" => Carbon::now()->toDateTimeString()
         ]);
     }
+
+    public function markAsImportant()
+    {
+        $this->timestamps = false;
+        return $this->update([
+            'is_important' => true
+        ]);
+    }
     public function user()
     {
         return $this->belongsTo(User::class,"user_id","id");
