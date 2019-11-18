@@ -30,7 +30,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        if (!Cache::get("users"))
-            Cache::forever("users",User::all());
     }
 }
