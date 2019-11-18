@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
- Broadcast::channel("private-messages-channel",function( $user)
+ Broadcast::channel("messages-channel",function( $user)
  {
-     return auth()->check();
+     return auth('api')->check();
  });
  Broadcast::channel("notifications-channel",function( $user)
  {
