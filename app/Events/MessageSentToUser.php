@@ -36,7 +36,8 @@ class MessageSentToUser implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('messages-channel');
+
+        return new PrivateChannel('messages-channel');
     }
     public function broadcastAs()
     {
