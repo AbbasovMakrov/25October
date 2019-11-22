@@ -23,9 +23,8 @@ Route::get("credits",function()
        "by" => [
            "API" => "Abbas H Laravel",
            "Android_Application" => "Hadi D Android",
-           "IOS_Application" => "??",
+           "IOS_Application" => null,
            "Event" => "25 October",
-           "SpecialThanks" => ['Hayder J']
        ]
    ]);
 });
