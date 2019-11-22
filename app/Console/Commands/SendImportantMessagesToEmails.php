@@ -27,12 +27,7 @@ class SendImportantMessagesToEmails extends Command
     /**
      * @var array
      */
-    private $emails = [
-//        "h.cj994@gmail.com",
-//        "ahm3d.ahm3d25879@gmail.com",
-//        "yasirgino@gmail.com",
-        "abbasaljoker@gmail.com"
-    ];
+    private $emails = [];
 
     /**
      * Create a new command instance.
