@@ -16,9 +16,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" v-if="!this.isAuth">
-                        <router-link class="btn btn-primary my-1 btn-block" to="/login"
-                        >Login</router-link
-                        >
+                        <router-link class="btn btn-primary my-1 btn-block" :to="{name:'login'}"
+                        >Login</router-link>
                     </li>
                     <li class="nav-item" v-if="this.isAuth">
                         <button

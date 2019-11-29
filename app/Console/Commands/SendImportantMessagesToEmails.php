@@ -62,6 +62,7 @@ class SendImportantMessagesToEmails extends Command
         }
         catch (\Exception $exception)
         {
+
             $this->warn($exception->getMessage());
         }
     }

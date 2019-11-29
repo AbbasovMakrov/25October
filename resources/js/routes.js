@@ -1,6 +1,6 @@
 import {isAuthRequired} from "./helpers";
 import Home from "./components/Home";
-
+import Login from "./components/Login";
 export const routes = [
     {
         path:"/",
@@ -9,8 +9,9 @@ export const routes = [
         component: Home
     },
     {
-        path:"/messages",
-        name:"messages",
-        meta : isAuthRequired(true),
+        path:"/login",
+        name:"login",
+        meta: isAuthRequired(false),
+        component : Login
     }
 ];

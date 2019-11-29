@@ -14,11 +14,12 @@ const router = new VueRouter({
     routes,
     mode: 'history'
 });
-router.beforeEach(((to, from, next) => {
+router.beforeEach(( (to, from, next) => {
     if (to.matched.some(record => record.meta.AuthRequired)){
-        if (!store.state.isAuth) return next("/login");
-        else return next("/");
-
+        if (!store.state.isAuth)
+            return next("/login");
+        else
+            return next();
     }
 }));
 const app = new Vue({

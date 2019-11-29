@@ -19,6 +19,18 @@ export default {
         }
     },
     actions:{
+        attemptLogin({state , commit} , payload){
+            return new Promise((resolve, reject) => {
+               axios.post('/dashboard/login',payload).then(response => {
+                   if (response.data.errors)
+                       reject(response.data.errors);
+                   else {
+                       commit("set_user",response.data.user);
+                       resolve(response);
+                   }
+               }).catch(err => reject(err));
+            });
+        }
     },
     getters:{}
 }

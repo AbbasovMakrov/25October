@@ -16,9 +16,9 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 });
  Broadcast::channel("messages-channel",function( $user)
  {
-     return auth('api')->check();
+     return auth('api')->id() == $user->id;
  });
  Broadcast::channel("notifications-channel",function( $user)
  {
-     return auth()->check();
+     return auth('api')->id() == $user->id;
  });
