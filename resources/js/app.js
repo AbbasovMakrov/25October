@@ -14,7 +14,7 @@ export const echo = new Echo({
     }
 });
 echo.connect();
-echo.listen("private-messages-channel","newMessage",e => console.log(e));
+echo.listen("private-messages-channel",".message.sent",e => console.log(e));
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';

@@ -41,6 +41,6 @@ class MessageSentToUser implements ShouldBroadcast
     }
     public function broadcastAs()
     {
-        return 'newMessage';
+        return 'message.sent';
     }
 }
