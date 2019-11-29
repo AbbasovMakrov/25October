@@ -12,9 +12,9 @@ class MessageResource extends JsonResource
         $type = "my";
         if ($this->user_id != auth()->id())
             $type = "his";
-        if ($this->file)
+        if (filled($this->file))
             $type .= "_" . file_type($this->file);
-        if ($this->message)
+        if (filled($this->message))
             $type .= "_text";
         return $type;
     }

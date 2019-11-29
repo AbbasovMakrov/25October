@@ -65538,7 +65538,7 @@ var echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
 });
 echo.connect();
 echo.listen("private-messages-channel", ".message.sent", function (e) {
-  return console.log(e);
+  return console.log(e.message);
 });
 
 
