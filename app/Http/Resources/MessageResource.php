@@ -10,7 +10,7 @@ class MessageResource extends JsonResource
     private function messageType()
     {
         $type = "my";
-        if ($this->user_id != auth()->id())
+        if ($this->to_user_id == auth()->id())
             $type = "his";
         if (filled($this->file))
             $type .= "_" . file_type($this->file);
