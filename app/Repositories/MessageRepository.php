@@ -46,7 +46,7 @@ class MessageRepository implements MessageRepositoryInterface
            "message" => $data['message'],
             "user_id" => auth()->id()
         ]);
-        broadcast(new MessageSentToUser($message));
+        event(new MessageSentToUser($message));
         $message->user_to->notify(new MessageSent($message));
         return $message;
     }
